@@ -59,19 +59,22 @@ $("pre").each(function(i,obj){
     var $pre = $(this);
     PRE_CONTENT_LIST.push($pre.text());
     // 添加div容器
-    $pre.after("<div id='__diagram_result_container_{0}' style='display:block; max-width:100%;overflow-x:auto;'></div>".format(i));
+    if ($('#__diagram_result_container_{0}'.format(i)).length == 0) {
+        $pre.after("<div class='__diagram_result_container' id='__diagram_result_container_{0}' style='display:block; max-width:100%;overflow-x:auto;'></div>".format(i));
+    }
     // console.log('class: ', $pre.attr('lang'));
     var lang = $pre.attr('lang');
     if (lang == 'sequence') {
         try{
             show_sequence_diagram(i);
         } catch (err) {
-
+            console.log(err);
         }
     } else if (lang == 'flow') {
         try {
             show_flowchart_diagram(i);
         } catch (err) {
+            console.log(err);
         }
     } else if (lang == 'mermaid') {
         // show_mermaid_diagram(i);
@@ -88,4 +91,21 @@ $("pre").each(function(i,obj){
 
     // }
     
+});
+
+//// fullscreen
+
+$('body').append("<div id='__diagram_fullscreen_container' class='__diagram_fullscreen_container_hide'><div id='__diagram_fullscreen_op_container'><button id='__diagram_fullscreen_close_btn'>Close</button></div><div id='__diagram_fullscreen_svg_container'></div></div>")
+
+$('div .__diagram_result_container').dblclick(function(eve){
+    console.log('dblclick');
+    var svgCode = $(eve.currentTarget).html();
+    console.log(svgCode);
+    $('#__diagram_fullscreen_container').removeClass('__diagram_fullscreen_container_hide')
+                                        .addClass('__diagram_fullscreen_container_show');
+    $('#__diagram_fullscreen_svg_container').html(svgCode);
+});
+$('#__diagram_fullscreen_close_btn').click(function(eve){
+    $('#__diagram_fullscreen_container').removeClass('__diagram_fullscreen_container_show')
+    .addClass('__diagram_fullscreen_container_hide');
 });

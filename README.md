@@ -13,7 +13,8 @@ This is an extensions for chrome browser, which is used to render diagrams in ma
 ## TODO
 
 - [x] support auto-render
-- [ ] support fullscreen
+- [x] support fullscreen
+- [ ] support download image
 - [ ] support mermaid
 - [ ] change to customized icon.png
 

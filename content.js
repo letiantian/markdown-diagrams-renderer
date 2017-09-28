@@ -82,10 +82,18 @@ Loader = (function() {
     
     })();  // end Loader
 
+function inject_css(path) {
+  $('head').append($('<link>')
+    .attr("rel","stylesheet")
+    .attr("type","text/css")
+    .attr("href", chrome.extension.getURL('inject/'+ path)));
+}
 // $('head').append($('<link>')
 //     .attr("rel","stylesheet")
 //     .attr("type","text/css")
 //     .attr("href", chrome.extension.getURL('inject/mermaid.forest.min.css')));
+
+inject_css('style.css');
 
 Loader.load('jquery.js')
 .load('mermaid.min.js')

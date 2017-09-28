@@ -1,0 +1,36 @@
+#__diagram_fullscreen_container {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    text-align: center;
+    max-height: 100%;
+    /* -moz-box-shadow: 10px 10px 5px #888888;
+    box-shadow: 10px 10px 5px #888888; */
+    /* -moz-box-shadow: 0px 0px 5px #ffafff;
+    box-shadow: 0px 0px 5px #ffafff; */
+}
+
+#__diagram_fullscreen_op_container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.__diagram_fullscreen_container_hide{
+    visibility: none;
+    height: 0;
+}
+
+.__diagram_fullscreen_container_show{
+    visibility: visible;
+    height: auto;
+    /* background-color: #ffafff; */
+    background-color: #F0FFF0;
+    /* background-color: #FFDEAD; */
+}
+
+#__diagram_fullscreen_svg_container{
+    display: block;
+}
