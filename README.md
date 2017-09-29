@@ -6,7 +6,7 @@ This is an extensions for chrome browser, which is used to render diagrams in ma
 
 ## Usage
 
-1. Install this extension.
+1. Install this extension by developer mode.
 2. Click icon, then click `点击渲染` button.
 
 
@@ -14,9 +14,11 @@ This is an extensions for chrome browser, which is used to render diagrams in ma
 
 - [x] support auto-render
 - [x] support fullscreen
-- [ ] support download image
+- [x] <del>support change background</del>
+- [x] support download image
 - [ ] support mermaid
-- [ ] change to customized icon.png
+- [x] change to customized [icon](https://www.flaticon.com)
+- [ ] upload to chrome webstore
 
 ## Example
 ### sequence

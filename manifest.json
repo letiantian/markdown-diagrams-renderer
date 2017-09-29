@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "markdown diagrams render",
+    "name": "github markdown diagrams renderer",
     "version": "0.1",
     "web_accessible_resources": ["inject/*.js", "inject/*.css"],
     "browser_action": {
@@ -10,5 +10,5 @@
 
     "permissions": ["activeTab"],
 
-    "icons": { "48": "icon.png" }
+    "icons": { "256": "icon.png" }
 }

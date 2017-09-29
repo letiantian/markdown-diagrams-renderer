@@ -53,6 +53,19 @@ function show_mermaid_diagram(pos) {
 
 }
 
+function dowbload_current_fullcreen_svg() {
+    
+    var svg = $('#__diagram_fullscreen_svg_container svg')[0];
+    var width = parseInt(svg.width.baseVal.value);
+    var height = parseInt(svg.height.baseVal.value);
+    var xml = '<?xml version="1.0" encoding="utf-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"><svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '" xmlns:xlink="http://www.w3.org/1999/xlink">' + svg.innerHTML + '</svg>';
+
+    var a = document.createElement("a");
+    a.download = "diagram.svg";
+    a.href = "data:image/svg+xml," + encodeURIComponent(xml);
+    a.click();
+}
+
 //// function end
 
 $("pre").each(function(i,obj){
@@ -95,17 +108,24 @@ $("pre").each(function(i,obj){
 
 //// fullscreen
 
-$('body').append("<div id='__diagram_fullscreen_container' class='__diagram_fullscreen_container_hide'><div id='__diagram_fullscreen_op_container'><button id='__diagram_fullscreen_close_btn'>Close</button></div><div id='__diagram_fullscreen_svg_container'></div></div>")
+if ($('#__diagram_fullscreen_container').length == 0) {
+    $('body').append("<div id='__diagram_fullscreen_container' class='__diagram_fullscreen_container_hide'><div id='__diagram_fullscreen_op_container'><button id='__diagram_fullscreen_download_btn'>Download</button><button id='__diagram_fullscreen_close_btn'>Close</button></div><div id='__diagram_fullscreen_svg_container'></div></div>")
 
-$('div .__diagram_result_container').dblclick(function(eve){
-    console.log('dblclick');
-    var svgCode = $(eve.currentTarget).html();
-    console.log(svgCode);
-    $('#__diagram_fullscreen_container').removeClass('__diagram_fullscreen_container_hide')
-                                        .addClass('__diagram_fullscreen_container_show');
-    $('#__diagram_fullscreen_svg_container').html(svgCode);
-});
-$('#__diagram_fullscreen_close_btn').click(function(eve){
-    $('#__diagram_fullscreen_container').removeClass('__diagram_fullscreen_container_show')
-    .addClass('__diagram_fullscreen_container_hide');
-});
+    $('div .__diagram_result_container').dblclick(function(eve){
+        console.log('dblclick');
+        var svgCode = $(eve.currentTarget).html();
+        console.log(svgCode);
+        $('#__diagram_fullscreen_container').removeClass('__diagram_fullscreen_container_hide')
+                                            .addClass('__diagram_fullscreen_container_show');
+        $('#__diagram_fullscreen_svg_container').html(svgCode);
+    });
+
+    $('#__diagram_fullscreen_close_btn').click(function(eve){
+        $('#__diagram_fullscreen_container').removeClass('__diagram_fullscreen_container_show')
+        .addClass('__diagram_fullscreen_container_hide');
+    });
+    
+    $('#__diagram_fullscreen_download_btn').click(function(eve){
+        dowbload_current_fullcreen_svg();
+    });
+}
