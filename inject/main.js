@@ -39,18 +39,17 @@ function show_flowchart_diagram(pos) {
 
 function show_mermaid_diagram(pos) {
     var data = PRE_CONTENT_LIST[pos];
-    // console.log('show_mermaid_diagram', pos, data);
+    console.log('show_mermaid_diagram', pos, data);
 
     var element = document.querySelector("#__diagram_result_container_"+pos);
     
     var insertSvg = function(svgCode, bindFunctions){
         element.innerHTML = svgCode;
+        console.log('show_mermaid_diagram result:', svgCode)
     };
 
-    // var graphDefinition = 'graph TB\na-->b';
     var graphDefinition = data;
-    var graph = mermaidAPI.render("__diagram_result_container_"+pos, graphDefinition, insertSvg);
-
+    var graph = mermaidAPI.render("__diagram_mermaid_result_"+pos, graphDefinition, insertSvg); // 第一个参数是生成的svg的id
 }
 
 function dowbload_current_fullcreen_svg() {
@@ -90,19 +89,8 @@ $("pre").each(function(i,obj){
             console.log(err);
         }
     } else if (lang == 'mermaid') {
-        // show_mermaid_diagram(i);
+        // show_mermaid_diagram(i);  // todo 需要调整css，否则会影响其他元素
     }
-    
-    // try{
-    //     show_sequence_diagram(i);
-    // } catch (err) {
-    //     try {
-    //         show_flowchart_diagram(i);
-    //     } catch (err) {
-    //         // show_mermaid_diagram(i);
-    //     }
-
-    // }
     
 });
 
@@ -124,7 +112,7 @@ if ($('#__diagram_fullscreen_container').length == 0) {
         $('#__diagram_fullscreen_container').removeClass('__diagram_fullscreen_container_show')
         .addClass('__diagram_fullscreen_container_hide');
     });
-    
+
     $('#__diagram_fullscreen_download_btn').click(function(eve){
         dowbload_current_fullcreen_svg();
     });

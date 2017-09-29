@@ -88,12 +88,9 @@ function inject_css(path) {
     .attr("type","text/css")
     .attr("href", chrome.extension.getURL('inject/'+ path)));
 }
-// $('head').append($('<link>')
-//     .attr("rel","stylesheet")
-//     .attr("type","text/css")
-//     .attr("href", chrome.extension.getURL('inject/mermaid.forest.min.css')));
 
 inject_css('style.css');
+inject_css('mermaid.forest.css');
 
 Loader.load('jquery.js')
 .load('mermaid.min.js')
