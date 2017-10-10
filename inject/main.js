@@ -89,7 +89,7 @@ $("pre").each(function(i,obj){
             console.log(err);
         }
     } else if (lang == 'mermaid') {
-        // show_mermaid_diagram(i);  // todo 需要调整css，否则会影响其他元素
+        show_mermaid_diagram(i);  // todo 需要调整css，否则会影响其他元素
     }
     
 });
